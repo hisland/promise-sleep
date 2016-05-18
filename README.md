@@ -29,7 +29,7 @@ and then, native Promise was patched
 
 ```
 Promise.resolve('extend native')
-.wait(1000)
+.sleep(1000)
 .then(function(rs) {
   console.log('after 1000ms, i got', rs);
 })

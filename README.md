@@ -1,17 +1,19 @@
 ## code
 
 * add native Promise.prototype.sleep
-* just handle resolve, reject will continue immediately
+* just handle resolve
+* reject will continue immediately
 
 ```
-// sleep n ms, and pass rs on
-Promise.prototype.sleep = function(n) {
-  return this.then(function(rs) {
-    return new Promise(function(resolve, reject) {
-      setTimeout(function() {
-        resolve(rs);
-      }, n);
-    });
+// sleep sleepTime ms, and pass rs on
+// error will pass immediately
+Promise.prototype.sleep = function(sleepTime) {
+  return this.then(rs => {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(rs)
+      }, sleepTime)
+    })
   })
 }
 ```
@@ -34,18 +36,3 @@ Promise.resolve('extend native')
   console.log('after 1000ms, i got', rs);
 })
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
